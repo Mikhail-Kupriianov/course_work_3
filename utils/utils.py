@@ -7,7 +7,7 @@ def get_operations():
     :return: Список операций в виде списка словарей
     """
     result = []
-    with open('operations.json', 'rt', encoding='utf-8') as data_file:
+    with open('../operations.json', 'rt', encoding='utf-8') as data_file:
         for item in json.loads("".join(data_file.readlines())):
             if item:
                 result.append(item)
