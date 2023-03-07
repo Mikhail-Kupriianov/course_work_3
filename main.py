@@ -1,6 +1,5 @@
 from operator import itemgetter
-from utils import get_operations, filter_by_state, templ_operation
-
+from utils.utils import get_operations, filter_by_state, templ_operation
 
 # Получаем данные по операциям
 user_operations = get_operations()
