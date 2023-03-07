@@ -7,7 +7,7 @@ def get_operations():
     :return: Список операций в виде списка словарей
     """
     result = []
-    with open('../operations.json', 'rt', encoding='utf-8') as data_file:
+    with open('..\operations.json', 'rt', encoding='utf-8') as data_file:
         for item in json.loads("".join(data_file.readlines())):
             if item:
                 result.append(item)
@@ -22,7 +22,7 @@ def filter_by_state(data_list: list, st_val: str) -> list:
     """
     result = []
     for item_dict in data_list:
-        if item_dict['state'] == 'EXECUTED':
+        if item_dict['state'] == st_val:
             result.append(item_dict)
     return result
 
@@ -63,5 +63,5 @@ def add_mask(original_str: str):
     elif len(original_lst[-1])  == 16:
         original_lst[-1] = f'{original_lst[-1][:4]} {original_lst[-1][4:6]}** **** {original_lst[-1][-4:]}'
     else:
-        original_lst[-1] = '???_номер_карты_\_счёта_???'
+        original_lst[-1] = '???_номер_карты,_счёта_???'
     return " ".join(original_lst)
