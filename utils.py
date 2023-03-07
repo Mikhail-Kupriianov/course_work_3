@@ -20,8 +20,8 @@ def filter_by_state(data_list: list, st_val: str) -> list:
 def templ_operation(oper_dict: dict):
     data_op = format_date(oper_dict.get('date'))
     descr_op = oper_dict.get('description')
-    source_op = oper_dict.get('from') if oper_dict.get('from') else ''
-    destin_op = oper_dict.get('to')
+    source_op = add_mask(oper_dict.get('from')) if oper_dict.get('from') else ''
+    destin_op = add_mask(oper_dict.get('to'))
     amount_op = oper_dict.get('operationAmount', {}).get('amount')
     currency_op = oper_dict.get('operationAmount', {}).get('currency', {}).get('name')
     return data_op, descr_op, source_op, destin_op, amount_op, currency_op
