@@ -25,3 +25,8 @@ def templ_operation(oper_dict: dict):
     amount_op = oper_dict['operationAmount']['amount']
     currency_op = oper_dict['operationAmount']['currency']['name']
     return data_op, descr_op, source_op, destin_op, amount_op, currency_op
+
+def format_date(date: str):
+    date_type = datetime.strptime(date[:10], "%Y-%m-%d")
+    result = date_type.strftime("%d.%m.%Y")
+    return result
