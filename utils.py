@@ -30,3 +30,13 @@ def format_date(date: str):
     date_type = datetime.strptime(date[:10], "%Y-%m-%d")
     result = date_type.strftime("%d.%m.%Y")
     return result
+
+def add_mask(original_str: str):
+    original_lst = original_str.split()
+    if len(original_lst[-1])  == 20:
+        original_lst[-1] = '**'+ original_lst[-1][-4:]
+    elif len(original_lst[-1])  == 16:
+        original_lst[-1] = f'{original_lst[-1][:4]} {original_lst[-1][4:6]}** **** {original_lst[-1][-4:]}'
+    else:
+        original_lst[-1] = '???_номер_карты_\_счёта_???'
+    return " ".join(original_lst)
