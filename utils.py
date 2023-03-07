@@ -17,3 +17,11 @@ def filter_by_state(data_list: list, st_val: str) -> list:
             result.append(item_dict)
     return result
 
+def templ_operation(oper_dict: dict):
+    data_op = format_date(oper_dict['date'])
+    descr_op = oper_dict['description']
+    source_op = oper_dict.get('from') if oper_dict.get('from') else ''
+    destin_op = oper_dict['to']
+    amount_op = oper_dict['operationAmount']['amount']
+    currency_op = oper_dict['operationAmount']['currency']['name']
+    return data_op, descr_op, source_op, destin_op, amount_op, currency_op
