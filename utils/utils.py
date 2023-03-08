@@ -1,17 +1,19 @@
-import json
+import json, os
 from datetime import datetime
 
-def get_operations():
+
+def get_operations(path_file: str):
     """
     Функция получает данные из файла operations.json в корне проекта и отбрасывает пустые словари
     :return: Список операций в виде списка словарей
     """
     result = []
-    with open('operations.json', 'rt', encoding='utf-8') as data_file:
+    with open(path_file, 'rt', encoding='utf-8') as data_file:
         for item in json.loads("".join(data_file.readlines())):
             if item:
                 result.append(item)
     return result
+
 
 def filter_by_state(data_list: list, st_val: str) -> list:
     """
@@ -25,6 +27,7 @@ def filter_by_state(data_list: list, st_val: str) -> list:
         if item_dict['state'] == st_val:
             result.append(item_dict)
     return result
+
 
 def templ_operation(oper_dict: dict):
     """
@@ -40,6 +43,7 @@ def templ_operation(oper_dict: dict):
     currency_op = oper_dict.get('operationAmount', {}).get('currency', {}).get('name')
     return data_op, descr_op, source_op, destin_op, amount_op, currency_op
 
+
 def format_date(date: str) -> str:
     """
     Функция конвертирует строку даты в дату, форматирует и возвращает в виде строки
@@ -50,6 +54,7 @@ def format_date(date: str) -> str:
     result = date_type.strftime("%d.%m.%Y")
     return result
 
+
 def add_mask(original_str: str):
     """
     Функция возвращает замаскируемый номер счета или номер карты.
@@ -58,9 +63,9 @@ def add_mask(original_str: str):
     :return: исходная строка с замаскированным номером
     """
     original_lst = original_str.split()
-    if len(original_lst[-1])  == 20:
-        original_lst[-1] = '**'+ original_lst[-1][-4:]
-    elif len(original_lst[-1])  == 16:
+    if len(original_lst[-1]) == 20:
+        original_lst[-1] = '**' + original_lst[-1][-4:]
+    elif len(original_lst[-1]) == 16:
         original_lst[-1] = f'{original_lst[-1][:4]} {original_lst[-1][4:6]}** **** {original_lst[-1][-4:]}'
     else:
         original_lst[-1] = '???_номер_карты,_счёта_???'
