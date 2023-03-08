@@ -1,5 +1,4 @@
 import os
-import os
 from operator import itemgetter
 from utils.utils import get_operations, filter_by_state, templ_operation
 
