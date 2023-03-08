@@ -2,18 +2,19 @@ import json
 import pytest
 
 import utils.utils
+import main
 
 
 @pytest.fixture
 def test_data():
-    with open('..\operations.json', 'rt', encoding='utf-8') as data_file:
+    with open(main.data_file, 'rt', encoding='utf-8') as data_file:
         return json.loads("".join(data_file.readlines()))
 
 
 @pytest.fixture
 def test_data_ok():
     result = []
-    with open('..\operations.json', 'rt', encoding='utf-8') as data_file:
+    with open(main.data_file, 'rt', encoding='utf-8') as data_file:
         for item in json.loads("".join(data_file.readlines())):
             if item:
                 result.append(item)
@@ -80,7 +81,7 @@ def test_6_items():
                 }
             },
             "description": "Открытие вклада",
-            "to": "���� 41421565395219882431"
+            "to": "Счет 41421565395219882431"
         },
         {
             "id": 142264268,
@@ -116,7 +117,7 @@ def test_6_items():
 
 
 def test_get_operations(test_data):
-    assert utils.utils.get_operations() != test_data
+    assert utils.utils.get_operations(main.data_file) != test_data
 
 
 def test_filter_by_state(test_data_ok):
