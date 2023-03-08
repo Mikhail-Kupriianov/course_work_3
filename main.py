@@ -1,8 +1,13 @@
+import os
+import os
 from operator import itemgetter
 from utils.utils import get_operations, filter_by_state, templ_operation
 
+# Получаем полный путь к файлу с данными
+OPERATION_DIR = os.path.abspath(os.path.dirname(__file__))
+data_file = os.path.join(OPERATION_DIR, 'operations.json')
 # Получаем данные по операциям
-user_operations = get_operations()
+user_operations = get_operations(data_file)
 # Фильтруем данные - отбираем только EXECUTED операции
 user_exec = filter_by_state(user_operations, 'EXECUTED')
 
