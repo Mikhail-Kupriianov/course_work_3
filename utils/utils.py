@@ -12,6 +12,7 @@ def get_operations(path_file: str):
         for item in json.loads("".join(data_file.readlines())):
             if item:
                 result.append(item)
+
     return result
 
 
